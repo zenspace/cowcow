@@ -1,0 +1,21 @@
+package com.bom.cowcow.auth.service;
+
+import com.bom.cowcow.auth.repository.MemberRepository;
+import com.bom.cowcow.model.Member;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class AuthService {
+
+    @Autowired
+    private MemberRepository memberRepository;
+
+    public Member signup(String email, String password, String username) {
+        Member member = new Member();
+        member.setEmail(email);
+        member.setPassword(password);
+        member.setUsername(username);
+        return memberRepository.save(member);
+    }
+}
