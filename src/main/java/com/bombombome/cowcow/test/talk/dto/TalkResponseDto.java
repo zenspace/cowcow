@@ -1,12 +1,23 @@
 package com.bombombome.cowcow.test.talk.dto;
 
+import lombok.Data;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
-@Getter
-@RequiredArgsConstructor
-public class TalkResponseDto {
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
-    private final String name;
-    private final int amount;
+@Data
+public class TalkResponseDto extends TestResponseDto {
+
+    @NotBlank
+    private String name;
+
+    @NotBlank
+    private String email;
+
+    public TalkResponseDto() {
+        System.out.println("TalkResponseDto");
+    }
+
 }

@@ -14,7 +14,6 @@ buildscript {
 }
 
 apply plugin: 'java'
-apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'docker'
@@ -26,13 +25,20 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
 }
-
 dependencies {
-    compile('org.springframework.boot:spring-boot-starter-web')
-    compile('org.projectlombok:lombok')
-    testCompile('org.springframework.boot:spring-boot-starter-test')
+    implementation 'org.jetbrains:annotations:19.0.0'
+    compile 'org.hsqldb:hsqldb'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation('org.springframework.boot:spring-boot-starter-validation')
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("mysql:mysql-connector-java")
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
 }
-
 task buildDocker(type: Docker, dependsOn: build) {
     // push = true
     applicationName = jar.baseName
