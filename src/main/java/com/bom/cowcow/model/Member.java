@@ -25,9 +25,9 @@ public class Member {
     @Column(length=20, nullable=false) // varchar(100) not null
     private String username;
 
-    @Column
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
-    @Column
+    @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 }
