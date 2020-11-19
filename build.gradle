@@ -27,6 +27,8 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
+    // log
+
     // QueryDSL
     compile("com.querydsl:querydsl-core:${queryDSLVersion}")
     compile("com.querydsl:querydsl-jpa:${queryDSLVersion}")
