@@ -3,12 +3,14 @@ package com.bom.cowcow.auth.service;
 import com.bom.cowcow.auth.repository.MemberRepository;
 import com.bom.cowcow.auth.request.SignupRequest;
 import com.bom.cowcow.model.Member;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Slf4j
 public class AuthService {
 
     @Autowired
@@ -22,6 +24,7 @@ public class AuthService {
         member.setEmail(email);
         member.setPassword(password);
         member.setUsername(username);
+        log.info("===================1========================");
         return memberRepository.save(member);
     }
 

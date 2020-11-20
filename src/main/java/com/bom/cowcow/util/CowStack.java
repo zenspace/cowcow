@@ -1,34 +1,27 @@
 package com.bom.cowcow.util;
 
+public class CowStack<T> {
+    Node<T> root = new Node<T>();
+    Node<T> currentNode = this.root;
 
-public class CowStack {
-    private Node rootNode = new Node();
-    private Node currentNode = this.rootNode;
+   public void push(T v) {
+       Node<T> n = new Node<T>();
+       n.value = v;
+       currentNode.nextNode= n;
+       currentNode = n;
+   }
 
-    public void push(int v) {
-        Node node = new Node();
-        node.setValue(v);
-        node.setPrevNode(currentNode);
-        currentNode.setNextNode(node);
-        this.currentNode = node;
-    }
+   public T pop() {
+       if(this.isRoot()) {
+           System.out.println("root");
+           return null;
+       }
+       Node<T> n = currentNode;
+       this.currentNode.prevNode = null;
+       return (T) n.value;
+   }
 
-    public int pop() {
-        if(this.isRoot()) {
-            return -1;
-        }
-
-        int value = this.currentNode.getValue();
-        Node prevNode = this.currentNode.getPrevNode();
-        prevNode.setNextNode(null);
-        this.currentNode = prevNode;
-        return value;
-    }
-
-    private boolean isRoot() {
-        if(this.currentNode == this.rootNode) {
-            return true;
-        }
-        return false;
-    }
+   private boolean isRoot() {
+       return this.currentNode == this.root ? true: false;
+   }
 }

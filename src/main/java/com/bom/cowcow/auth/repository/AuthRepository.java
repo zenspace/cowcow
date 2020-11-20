@@ -31,13 +31,19 @@ public class AuthRepository extends QuerydslRepositorySupport {
         log.info("repo start");
         QMember qMember = QMember.member;
 
-        List<Member> members = from(qMember).where(qMember.username.eq(username)).fetch();
+        List<Member> members = from(qMember)
+                .where(qMember.username.eq(username))
+                .fetch();
         log.info("query List: ", members);
 
-        Member member = from(qMember).where(qMember.username.eq(username)).fetchOne();
+        Member member = from(qMember)
+                .where(qMember.username.eq(username))
+                .fetchOne();
         log.info("query Member: ", member);
 
-        QueryResults<Member> memberQueryResults = from(qMember).where(qMember.username.eq(username)).fetchResults();
+        QueryResults<Member> memberQueryResults = from(qMember)
+                .where(qMember.username.eq(username))
+                .fetchResults();
         log.info("query Results: ", memberQueryResults);
         return members;
     }

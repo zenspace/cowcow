@@ -29,6 +29,7 @@ public class AuthController {
     @PostMapping(value = "/signup", produces = "application/json")
     public ResponseEntity<Member> signup(@Valid @RequestBody SignupRequest request) {
 //        Member newMember = authService.signup("test@test.com", "test", "test");
+        log.info("===========================================");
         Member newMember = authService.signup(request.getEmail(), request.getPassword(), request.getUsername());
         return new ResponseEntity<Member>(newMember,HttpStatus.OK);
     }

@@ -9,7 +9,8 @@ import javax.validation.constraints.Pattern;
 @Data
 public class SignupRequest {
 
-    @Pattern(regexp = "^[_A-Za-z0-9-]+(\\\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\\\.(?:[A-Z]{2,}|com|org))*$")
+//    @Pattern(regexp = "^[_A-Za-z0-9-]+(\\\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\\\.(?:[A-Z]{2,}|com|org))*$")
+    @NotBlank
     private String email;
 
     @NotBlank
