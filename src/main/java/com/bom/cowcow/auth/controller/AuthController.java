@@ -2,6 +2,7 @@ package com.bom.cowcow.auth.controller;
 
 import com.bom.cowcow.auth.request.SignupRequest;
 import com.bom.cowcow.auth.service.AuthService;
+import com.bom.cowcow.common.Response;
 import com.bom.cowcow.model.Member;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/auth")
@@ -26,12 +29,18 @@ public class AuthController {
         return "halo";
     }
 
-    @PostMapping(value = "/signup", produces = "application/json")
-    public ResponseEntity<Member> signup(@Valid @RequestBody SignupRequest request) {
+
+   @PostMapping(value = "/signup", produces = "application/json")
+    public ResponseEntity<Response> signup(@Valid @RequestBody SignupRequest request) {
 //        Member newMember = authService.signup("test@test.com", "test", "test");
+        Map<String,String> response = new HashMap<>();
         log.info("===========================================");
         Member newMember = authService.signup(request.getEmail(), request.getPassword(), request.getUsername());
-        return new ResponseEntity<Member>(newMember,HttpStatus.OK);
+        Response res = new Response();
+        res.setErrorCode("error");
+        res.setErrorMessage("error Message");
+        res.setModel(newMember);
+        return new ResponseEntity<Response>(res,HttpStatus.METHOD_NOT_ALLOWED);
     }
 
     @GetMapping(value = "/user/username")
@@ -40,4 +49,5 @@ public class AuthController {
         List<Member> m = authService.getUserByUsername(username);
         return new ResponseEntity<List<Member>>(m, HttpStatus.OK);
     }
+    
 }

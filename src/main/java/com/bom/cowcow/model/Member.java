@@ -10,7 +10,7 @@ import java.util.Date;
 @Table(name = "members")
 @Getter
 @Setter
-public class Member {
+public class Member extends ModelBase {
     public void Member() { }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // auto created ID

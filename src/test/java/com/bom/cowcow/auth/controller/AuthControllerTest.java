@@ -51,9 +51,26 @@ class AuthControllerTest {
         )
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.username").value("User_1"))
+                .andExpect(jsonPath("$.email").value("test@test.com"))
         .andDo(print())
         ;
     }
+
+//    @Test
+//    public void 중복이메일_가입시도(){
+//        String content = this.유저생성("test@test.com" , "test", "User_1");
+//        this.mockMvc.perform(
+//                post("/auth/signup")
+//                        .content(content)
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .accept(MediaType.APPLICATION_JSON)
+//        )
+//                .andExpect(status().isOk())
+//                .andExpect(jsonPath("$.username").value("User_1"))
+//                .andExpect(jsonPath("$.email").value("test@test.com"))
+//                .andDo(print())
+//        ;
+//    }
 
     private String 유저생성(String email, String password, String username) throws JsonProcessingException {
         SignupRequest request = new SignupRequest();
